@@ -11,10 +11,10 @@ public:
 	{
 		m_world->SetGravity(b2Vec2{ 0.f,0.f });
 
-		createWall(b2Vec2{ m_worldSize.x,1 }, b2Vec2{ 0,-m_worldSize.y }, 0); // floor (s/p/a)
-		createWall(b2Vec2{ 1,m_worldSize.y }, b2Vec2{ -m_worldSize.x,0 }, M_PI); // left wall
-		createWall(b2Vec2{ 1,m_worldSize.y }, b2Vec2{ m_worldSize.x,0 }, M_PI); // right wall
-		createWall(b2Vec2{ m_worldSize.x,1 }, b2Vec2{ 0,m_worldSize.y }, 0); // top wall
+		createWall(b2Vec2{ m_worldSize.x, 1.f }, b2Vec2{ 0.0f, -m_worldSize.y }, 0.0f); // floor (s/p/a)
+		createWall(b2Vec2{ 1.f, m_worldSize.y }, b2Vec2{ -m_worldSize.x, 0.0f }, M_PI); // left wall
+		createWall(b2Vec2{ 1.f, m_worldSize.y }, b2Vec2{ m_worldSize.x, 0.0f }, M_PI); // right wall
+		createWall(b2Vec2{ m_worldSize.x , 1.f }, b2Vec2{ 0.0f, m_worldSize.y }, 0.0f); // top wall
 
 		createBall(PTM_RATIO(30.f), b2Vec2{ 0.f,0.f }, 0.f);
 	}
@@ -54,7 +54,7 @@ private:
 		body->CreateFixture(&fixtureDef);
 	}
 
-	void createBall(float radius, b2Vec2 pos, float32 angle)
+	void createBall(float32 radius, b2Vec2 pos, float32 angle)
 	{
 		b2BodyDef myBodyDef;
 		myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
@@ -86,7 +86,7 @@ private:
 	}
 
 private:
-	b2Vec2 m_worldSize{ PTM_RATIO(b2Vec2{600, 800}) };
+	b2Vec2 m_worldSize{ PTM_RATIO(b2Vec2{600.f, 800.f}) };
 };
 
 #endif
