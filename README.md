@@ -10,3 +10,5 @@ This test is to be used with Box2D's testbed application which is included with 
 
 Box2D official site: https://box2d.org/
 Box2D on git: https://github.com/erincatto/Box2D
+
+![](BreakoutPhysTest.gif)
