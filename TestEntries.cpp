@@ -71,7 +71,7 @@
 #include "VaryingRestitution.h"
 #include "VerticalStack.h"
 #include "Web.h"
-#include "FooTest.h"
+#include "BreakoutTest.h"
 
 TestEntry g_testEntries[] =
 {
