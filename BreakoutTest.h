@@ -13,9 +13,13 @@ public:
 
 		createEnclosure(m_worldSize);
 
-		createBall(PTM_RATIO(30.f), b2Vec2{ 0.f,0.f }, 0.f);
+		m_ball = createBall(PTM_RATIO(30.f), b2Vec2{ 0.f,0.f }, 0.f);
+		
+		m_ball->ApplyLinearImpulseToCenter(b2Vec2{ 20.0f, 20.0f }, true);
+	
 	}
 
+	
 	static Test* Create()
 	{
 		return new BreakoutTest;
@@ -24,9 +28,7 @@ public:
 private:
 	void createEnclosure(b2Vec2 size);
 	void createWall(b2Vec2 size, b2Vec2 pos, float32 angle);
-	void createBall(float radius, b2Vec2 pos, float32 angle);
-
-	
+	b2Body* createBall(float radius, b2Vec2 pos, float32 angle);	
 
 	// 30 px / 1 meter
 	float32 PTM_RATIO(float32 pixels) { return pixels * 0.0333f; }
@@ -39,6 +41,7 @@ private:
 	}
 
 private:
+	b2Body* m_ball;
 	b2Vec2 m_worldSize{ PTM_RATIO(b2Vec2{600, 800}) };
 };
 
@@ -84,10 +87,10 @@ void BreakoutTest::createWall(b2Vec2 size, b2Vec2 pos, float32 angle)
 	fixtureDef.density = 1.f;
 	body->CreateFixture(&fixtureDef);
 }
-
-void BreakoutTest::createBall(float radius, b2Vec2 pos, float32 angle)
+b2Body* BreakoutTest::createBall(float radius, b2Vec2 pos, float32 angle)
 {
 	b2BodyDef myBodyDef;
+	myBodyDef.bullet = true;
 	myBodyDef.type = b2_dynamicBody; //this will be a dynamic body
 	myBodyDef.position.Set(pos.x, pos.y); //set the starting position
 	myBodyDef.angle = angle; //set the starting angle
@@ -104,4 +107,5 @@ void BreakoutTest::createBall(float radius, b2Vec2 pos, float32 angle)
 	circFixtureDef.restitution = 1.f;
 	circFixtureDef.friction = 0.f;
 	dynamicBody->CreateFixture(&circFixtureDef);
+	return dynamicBody;
 }
