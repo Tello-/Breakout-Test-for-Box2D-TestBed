@@ -52,19 +52,19 @@ void BreakoutTest::createEnclosure(b2Vec2 size)
 	b2EdgeShape shape;
 
 	// Floor
-	shape.Set(b2Vec2(-size.x, 0.0f), b2Vec2(size.x, 0.0f));
+	shape.Set(b2Vec2(-size.x, -size.y), b2Vec2(size.x, -size.y));
 	ground->CreateFixture(&shape, 0.0f);
 
 	// Left wall
-	shape.Set(b2Vec2(-size.x, 0.0f), b2Vec2(-size.x, size.y * 2));
+	shape.Set(b2Vec2(-size.x, -size.y), b2Vec2(-size.x, size.y));
 	ground->CreateFixture(&shape, 0.0f);
 
 	// Right wall
-	shape.Set(b2Vec2(size.x, 0.0f), b2Vec2(size.x, size.y * 2));
+	shape.Set(b2Vec2(size.x, -size.y), b2Vec2(size.x, size.y));
 	ground->CreateFixture(&shape, 0.0f);
 
 	// Roof
-	shape.Set(b2Vec2(-size.x, size.y * 2), b2Vec2(size.x, size.y * 2));
+	shape.Set(b2Vec2(-size.x, size.y), b2Vec2(size.x, size.y));
 	ground->CreateFixture(&shape, 0.0f);
 }
 void BreakoutTest::createWall(b2Vec2 size, b2Vec2 pos, float32 angle)
